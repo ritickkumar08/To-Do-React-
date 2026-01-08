@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './components/Header'
 import ToDoList from './components/ToDoList'
 
@@ -8,14 +8,37 @@ function App() {
    * todos :- a state which will contain an array of todo items
    * each todo will have an id, text, completed, editing
    * this state is the controller of the whole application.
+   * we are stting the initial value for the todos by searching if the localstorage has any value in itself as now the 
+   * React rules don't allow to use a state inside a useEffect hook.
    */
-  const[todos, setTodos] = useState([])
+  const[todos, setTodos] = useState(() => {
+    const saved = localStorage.getItem("todos")
+    return saved ? JSON.parse(saved) : []
+  })
 
   /**
    * another state to keep a check on the input made
    * and we make it a controlled input by providing it with a state, value and an eventhandler
    */
   const[input, setInput] = useState("")
+
+  /**
+   * now we are trying to add the localStorage to work for as for the storage,
+   * so that the data is not lost as soon as we refresh.
+   */
+  // useEffect(()=>{
+  //   const saved = localStorage.getItem("todos")
+  //   if(saved){
+  //     setTodos(JSON.parse(saved));
+  //   }
+  // },[])
+
+  /**
+   * we will also need to store the data to local storage as the todos are added.
+   */
+  useEffect(()=>{
+    localStorage.setItem("todos", JSON.stringify(todos))
+  },[todos])
 
   /**
    * a function to handle the add function:
@@ -66,7 +89,7 @@ function App() {
   function startEdit(id){
     setTodos(
       todos.map(todo => 
-        todo.id == id ? {...todo, editing:true} : todo
+        todo.id === id ? {...todo, editing:true} : todo
       )
     )
   }
