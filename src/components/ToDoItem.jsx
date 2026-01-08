@@ -20,7 +20,7 @@ function ToDoItem({todo, onToggle, onDelete, onEdit, onSave}) {
     return (
         <div className="flex items-center justify-between py-2 border-b border-gray-300">
             {/* a checkbox to toggle the completion of a task  */}
-            <input type="checkbox" checked={todo.completed} onChange={()=>onToggle(todo.id)} className='w-4 h-4' />
+            <input type="checkbox" checked={todo.completed} onChange={()=>onToggle(todo.id)} className='w-4 h-4 rounded-full  border-2 border-gray-600 checked:bg-green-600 checked:border-green-600 appearance-none cursor-pointer transition-all duration-200' />
 
             {/* task text or input field if editing */}
             <div className="flex-1 px-3">
