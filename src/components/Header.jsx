@@ -1,10 +1,10 @@
 import React from 'react'
 
+
+
 function Header() {
-    return (
-        <div>
-            
-        </div>
+    return(
+        <h1>Header</h1>
     )
 }
 
