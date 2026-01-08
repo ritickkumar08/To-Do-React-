@@ -15,7 +15,7 @@ import ToDoItem from './ToDoItem'
 function ToDoList({todos, onToggle, onDelete, onEdit, onSave}) {
     console.log(todos);
     return (
-        <div className="mt-6 p-4 rounded-lg shadow-lg border bg-yellow-50">
+        <div className="mt-6 p-4 rounded-lg shadow-lg border-red-500 bg-red-200">
             {/* here we will be mapping through and render the todos entered by the users */}
             {/* using the map function */}
             

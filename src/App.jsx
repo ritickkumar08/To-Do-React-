@@ -76,9 +76,9 @@ function App() {
    */
   function saveEdit(id,newText){
     setTodos(
-      todos.map((todo) =>{
+      todos.map(todo =>
       todo.id === id ? {...todo, text: newText, editing:false} : todo
-    }))
+    ))
   }
 
 
@@ -86,7 +86,7 @@ function App() {
     <div className="min-h-screen p-6 flex flex-col items-center bg-red-400">
       <Header/>
 
-      <div className="w-full max-w-xl mt-6">
+      <div className="w-full max-w-2xl mt-6 border-b-2 p-2.5 rounded-b-md">
 
         {/* now the input and the add button */}
         <div className="flex gap-2">
@@ -95,9 +95,10 @@ function App() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="flex-1 px-3 py-2 rounded border border-gray-400 bg-yellow-50" />
+          <button onClick={handleAdd} className="px-6 py-2 bg-black text-white rounded">Add</button>
         </div>
 
-        <button onClick={handleAdd} className="px-4 py-2 bg-black text-white rounded">Add</button>
+        
 
         <ToDoList 
           todos={todos}
