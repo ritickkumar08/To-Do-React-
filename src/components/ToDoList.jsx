@@ -12,14 +12,22 @@ import ToDoItem from './ToDoItem'
  *  -> pass all the todos and the utility functions
  */
 
-function ToDoList({todos, onToggle, onEdit, onSave, onDelete}) {
+function ToDoList({todos, onToggle, onDelete, onEdit, onSave}) {
+    console.log(todos);
     return (
-        <div>
+        <div className="mt-6 p-4 rounded-lg shadow-lg border bg-yellow-50">
             {/* here we will be mapping through and render the todos entered by the users */}
             {/* using the map function */}
-            {todos.map((item) => {
-                <ToDoItem key={item.id} todo={item} onToggle={onToggle} onDelete={onDelete} onEdit={onEdit} onSave={onSave}/>
-            })}
+            
+            {todos.map((item) => (
+                <ToDoItem 
+                key={item.id} 
+                todo={item} 
+                onToggle={onToggle} 
+                onDelete={onDelete} 
+                onEdit={onEdit} 
+                onSave={onSave}/>
+            ))}
         </div>
     )
 }

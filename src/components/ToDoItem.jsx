@@ -14,16 +14,16 @@ import React, { useState } from 'react'
  *  editText - to keep a check on the editing of the input todos
  */
 
-function ToDoItem({todo, onToggle, onSave, onEdit, onDelete}) {
+function ToDoItem({todo, onToggle, onDelete, onEdit, onSave}) {
     const[editText, setEditText] = useState(todo.text)
 
     return (
-        <div>
+        <div className="flex items-center justify-between py-2 border-b border-gray-300">
             {/* a checkbox to toggle the completion of a task  */}
             <input type="checkbox" checked={todo.completed} onChange={()=>onToggle(todo.id)} className='w-4 h-4' />
 
             {/* task text or input field if editing */}
-            <div>
+            <div className="flex-1 px-3">
                 {todo.editing ?(
                     <input value={editText} onChange={(e) => setEditText(e.target.value)} className='w-full px-2 py-1 border rounded'/> //to update the temprory state
                 ) : (
@@ -32,14 +32,13 @@ function ToDoItem({todo, onToggle, onSave, onEdit, onDelete}) {
             </div>
 
             {/* buttons :- edit save delete  */}
-            <div>
-                {todo.editing ? (
-                    <button onClick={() => onSave(todo.id, editText)} className='text-green-500'>save</button>
-                ) : (
-                    <button onClick={() => onEdit(todo.id)} className='text-blue-500'>Edit</button>
-                )}
+            <div className="flex gap-2">
+                {
+                    todo.editing ? (<button onClick={() => onSave(todo.id, editText)} className='text-green-500'>save</button>) : 
+                    (<button onClick={() => onEdit(todo.id)} className='text-blue-500'>Edit</button>)
+                }
                 
-                <button onClick={()=> onDelete(todo.id)}>Delete</button>
+                <button onClick={()=> onDelete(todo.id)} className="text-red-600">Delete</button>
             </div>
         </div>
     )
